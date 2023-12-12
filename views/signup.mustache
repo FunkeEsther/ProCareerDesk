@@ -14,7 +14,7 @@
         }
 
         header {
-            background-color: #1f2b3b; /* Darker blue color for the navbar */
+            background-color: #1f2b3b;
             color: #fff;
             text-align: center;
             padding: 15px;
@@ -31,7 +31,7 @@
         }
 
         nav {
-            background-color: #15202b; /* Dark blue color for the navbar */
+            background-color: #15202b;
             color: #fff;
             text-align: center;
             padding: 10px;
@@ -47,41 +47,62 @@
             font-weight: bold;
         }
 
-        section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
         form {
-            max-width: 400px;
+            max-width: 800px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
-            margin: 0 20px;
+            margin: 20px auto; /* Center the form */
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Center forms vertically */
+            min-height: 100vh;
         }
 
         h2 {
             color: #333;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-column {
+            flex-basis: calc(33.33% - 10px);
         }
 
         label {
             display: block;
             margin: 10px 0 5px;
             color: #333;
+            text-align: left;
         }
 
         input {
-            width: 100%;
+            width: calc(100% - 10px);
             padding: 10px;
             margin-bottom: 15px;
             box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input.error {
+            border: 2px solid red;
         }
 
         button {
+            width: 100%;
             background-color: #3498db;
             color: #fff;
             padding: 10px 15px;
@@ -91,7 +112,7 @@
         }
 
         footer {
-            background-color: #1f2b3b; /* Darker blue color for the footer */
+            background-color: #1f2b3b;
             color: #fff;
             text-align: center;
             padding: 10px;
@@ -103,7 +124,6 @@
 </head>
 <body>
     <header>
-        <!-- ProCareerDesk logo goes here -->
         <a href="/about" class="logo">ProCareerDesk</a>
         <nav>
             <a href="/login">Login</a> | <a href="/signup">Sign Up</a>
@@ -113,22 +133,87 @@
     <section>
         <form action="/student/signup" method="post">
             <h2>Student Signup</h2>
-            <label for="studentUsername">Username:</label>
-            <input type="text" id="studentUsername" name="username" required>
+            {{#studentErrorMessage}}
+                <p style="color: red;">{{studentErrorMessage}}</p>
+            {{/studentErrorMessage}}
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="studentFirstName">First Name:</label>
+                    <input type="text" id="studentFirstName" name="firstName" required class="{{#studentErrors.firstName}}error{{/studentErrors.firstName}}">
+                </div>
+                <div class="form-column">
+                    <label for="studentLastName">Last Name:</label>
+                    <input type="text" id="studentLastName" name="lastName" required class="{{#studentErrors.lastName}}error{{/studentErrors.lastName}}">
+                </div>
+                <div class="form-column">
+                    <label for="studentId">Student ID:</label>
+                    <input type="text" id="studentId" name="studentId" required class="{{#studentErrors.studentId}}error{{/studentErrors.studentId}}">
+                </div>
+            </div>
 
-            <label for="studentPassword">Password:</label>
-            <input type="password" id="studentPassword" name="password" required>
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="studentEmail">Email Address:</label>
+                    <input type="email" id="studentEmail" name="email" required class="{{#studentErrors.email}}error{{/studentErrors.email}}">
+                </div>
+                <div class="form-column">
+                    <label for="studentDepartment">Department:</label>
+                    <input type="text" id="studentDepartment" name="department" required class="{{#studentErrors.department}}error{{/studentErrors.department}}">
+                </div>
+                <div class="form-column">
+                    <label for="studentUsername">Username:</label>
+                    <input type="text" id="studentUsername" name="username" required class="{{#studentErrors.username}}error{{/studentErrors.username}}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="studentPassword">Password:</label>
+                    <input type="password" id="studentPassword" name="password" required class="{{#studentErrors.password}}error{{/studentErrors.password}}">
+                </div>
+                <div class="form-column">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required class="{{#studentErrors.confirmPassword}}error{{/studentErrors.confirmPassword}}">
+                </div>
+            </div>
 
             <button type="submit">Sign Up</button>
         </form>
 
         <form action="/admin/signup" method="post">
             <h2>Admin Signup</h2>
-            <label for="adminUsername">Username:</label>
-            <input type="text" id="adminUsername" name="username" required>
+            {{#adminErrorMessage}}
+                <p style="color: red;">{{adminErrorMessage}}</p>
+            {{/adminErrorMessage}}
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="adminFirstName">First Name:</label>
+                    <input type="text" id="adminFirstName" name="firstName" required class="{{#adminErrors.firstName}}error{{/adminErrors.firstName}}">
+                </div>
+                <div class="form-column">
+                    <label for="adminLastName">Last Name:</label>
+                    <input type="text" id="adminLastName" name="lastName" required class="{{#adminErrors.lastName}}error{{/adminErrors.lastName}}">
+                </div>
+                <div class="form-column">
+                    <label for="adminUsername">Username:</label>
+                    <input type="text" id="adminUsername" name="username" required class="{{#adminErrors.username}}error{{/adminErrors.username}}">
+                </div>
+            </div>
 
-            <label for="adminPassword">Password:</label>
-            <input type="password" id="adminPassword" name="password" required>
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="adminEmail">Email:</label>
+                    <input type="email" id="adminEmail" name="email" required class="{{#adminErrors.email}}error{{/adminErrors.email}}">
+                </div>
+                <div class="form-column">
+                    <label for="adminPassword">Password:</label>
+                    <input type="password" id="adminPassword" name="password" required class="{{#adminErrors.password}}error{{/adminErrors.password}}">
+                </div>
+                <div class="form-column">
+                    <label for="confirmAdminPassword">Confirm Password:</label>
+                    <input type="password" id="confirmAdminPassword" name="confirmPassword" required class="{{#adminErrors.confirmPassword}}error{{/adminErrors.confirmPassword}}">
+                </div>
+            </div>
 
             <button type="submit">Sign Up</button>
         </form>
