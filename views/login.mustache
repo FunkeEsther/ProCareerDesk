@@ -107,6 +107,9 @@
             bottom: 0;
             width: 100%;
         }
+    .error-message {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -121,6 +124,13 @@
     <section>
         <form action="/login" method="post">
             <h2>Login</h2>
+
+            {{#errorMessage}}
+            <div class="error-message">
+                {{errorMessage}}
+            </div>
+            {{/errorMessage}}
+
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
