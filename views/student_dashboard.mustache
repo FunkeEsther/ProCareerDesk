@@ -1,161 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-GLhlTQ8iN17D5L6RrOXFaAhr/8CCpCz6g25Wile9bAsjFU1twIuKiQF5F5shGJ" crossorigin="anonymous">
+    <!-- Bootstrap CSS link -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-<correct-integrity-value>" crossorigin="anonymous">
+    <!-- Add this line to include Font Awesome JavaScript library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-<correct-integrity-value>" crossorigin="anonymous"></script>
+    <script src="Controllers/studentController.js"></script>
+
     <title>Student Dashboard</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: left;
-            width: 100%;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        header button.logout-button {
-            background-color: #001f3f;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        header button.logout-button:hover {
-            background-color: #003366;
-        }
-
-        main {
-            max-width: 800px;
-            width: 100%;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        h2 {
-            color: #333;
-            margin-top: 0;
-        }
-
-        .opportunity {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .opportunity input {
-            margin-right: 10px;
-        }
-
-        button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-left: auto;
-            margin-right: 10px;
-            font-size: 14px;
-        }
-
-        button.delete-button {
-            background-color: #d9534f;
-        }
-
-        button:hover, button.delete-button:hover {
-            background-color: #555;
-        }
-
-        .add-opportunity-button {
-            background-color: #5bc0de;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .add-opportunity-button:hover {
-            background-color: #46b8da;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/student.css">
 </head>
+
 <body>
 
-<header>
-    <h1>Student Dashboard</h1>
-    <button class="logout-button">Logout</button>
-</header>
+    <header>
+        <h1>Student Dashboard</h1>
+        <a href="/" class="logout-button">Logout</a>
+    </header>
 
-<main>
-    <h2>Add Opportunities</h2>
+    <main>
+        <!-- User Profile Section -->
+        <i class="fas fa-user-circle fa-9x"></i> 
+        <div class="user-details">
+        <p>Welcome, {{ userData.username }}</p> <br>
 
-    <div class="opportunity">
-        <input type="checkbox" id="careerAdvice">
-        <label for="careerAdvice">Career Advice - Receive guidance and insights for your future career path.</label>
+    <div class="user-details-row">
+        <div class="user-details-column">
+            <p>Your role:</p>
+            <p>Student ID:</p>
+            <p>First name:</p>
+            <p>Last name:</p>
+        </div>
+        <div class="user-details-column">
+            <p>{{ userData.role }}</p>
+            <p>{{ userData.studentId }}</p>
+            <p>{{ userData.firstName }}</p>
+            <p>{{ userData.lastName }}</p>
+        </div>
+    </div>
+</div>
+    </main>
+    <div class="header-buttons">
+            <a href="/addOpp" class="dashboard-button">Add Opportunities</a>
+            <a href="/myOpp" class="dashboard-button">My Opportunities</a>
+        </div>
+<h2>Available coaching/mentoring opportunities</h2>
+
+<h4>Resume Review</h4>
+
+<!-- Bootstrap Card Row -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Card 1 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img.jpg" class="card-img-top" alt="Resume Review 1">
+            <div class="card-body">
+                <h5 class="card-title">Resume Review 1</h5>
+                <p class="card-text">Get personalized feedback on your resume to make it stand out to employers.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
     </div>
 
-    <div class="opportunity">
-        <input type="checkbox" id="resumeReview">
-        <label for="resumeReview">Resume Review - Get feedback on your resume to make it stand out to employers.</label>
+    <!-- Card 2 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img1.jpg" class="card-img-top" alt="Resume Review 2">
+            <div class="card-body">
+                <h5 class="card-title">Resume Review 2</h5>
+                <p class="card-text">Learn how to tailor your resume for different job opportunities with expert guidance.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
     </div>
 
-    <div class="opportunity">
-        <input type="checkbox" id="mockInterview">
-        <label for="mockInterview">Mock Interview - Practice and improve your interview skills in a simulated environment.</label>
+    <!-- Card 3 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img2.jpg" class="card-img-top" alt="Resume Review 3">
+            <div class="card-body">
+                <h5 class="card-title">Resume Review 3</h5>
+                <p class="card-text">Discover the key elements that recruiters look for in a resume and improve your chances of landing interviews.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
     </div>
-
-    <button class="add-opportunity-button">Add Opportunity</button>
-
-    <h2>Added Opportunities</h2>
-
-    <!-- Added opportunities will be displayed here -->
-   <!-- Replace delete and modify buttons with Font Awesome icons -->
-<div class="opportunity">
-    <label>New Opportunity 1</label>
-    <button onclick="modifyOpportunity('New Opportunity 1')"><i class="fas fa-edit"></i> Modify</button>
-    <button class="delete-button" onclick="deleteOpportunity('New Opportunity 1')"><i class="fas fa-trash-alt"></i> Delete</button>
 </div>
 
-<div class="opportunity">
-    <label>New Opportunity 2</label>
-    <button onclick="modifyOpportunity('New Opportunity 2')"><i class="fas fa-edit"></i> Modify</button>
-    <button class="delete-button" onclick="deleteOpportunity('New Opportunity 2')"><i class="fas fa-trash-alt"></i> Delete</button>
+<h4>Career Advice</h4>
+
+<!-- Bootstrap Card Row -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Card 1 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img3.jpg" class="card-img-top" alt="Resume Review 1">
+            <div class="card-body">
+                <h5 class="card-title">Career Advice 1</h5>
+                <p class="card-text">Unlock your career potential with personalized guidance – our career advice sessions provide insights tailored to your goals and aspirations.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img4.jpg" class="card-img-top" alt="Resume Review 2">
+            <div class="card-body">
+                <h5 class="card-title">Career Advice 2</h5>
+                <p class="card-text">Navigate your professional journey with confidence by gaining valuable advice on career choices, skill development, and industry trends.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img5.jpg" class="card-img-top" alt="Resume Review 3">
+            <div class="card-body">
+                <h5 class="card-title">Career Advice 3</h5>
+                <p class="card-text">Elevate your career path with expert advice – our career guidance sessions offer strategic insights to help you make informed decisions and achieve success.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
 </div>
 
-</main>
+<h4>Mock Interview</h4>
 
+<!-- Bootstrap Card Row -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Card 1 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img6.jpg" class="card-img-top" alt="Resume Review 1">
+            <div class="card-body">
+                <h5 class="card-title">Mock Interview 1</h5>
+                <p class="card-text">Sharpen your interview skills and boost your confidence with our mock interview sessions, designed to simulate real-world job interview scenarios.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img7.jpg" class="card-img-top" alt="Resume Review 2">
+            <div class="card-body">
+                <h5 class="card-title">Mock Interview2</h5>
+                <p class="card-text">Prepare for success in your upcoming interviews by participating in our mock interview program, where you'll receive constructive feedback and tips for improvement.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img8.jpg" class="card-img-top" alt="Resume Review 3">
+            <div class="card-body">
+                <h5 class="card-title">Mock Interview 3</h5>
+                <p class="card-text">Gain a competitive edge in the job market with our mock interview sessions, offering a realistic experience to refine your answers, communication, and overall interview performance.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Our Mentors</h2>
+
+<div class="container">
+        <p>Dedicated to nurturing the next generation of professionals, our mentors provide personalized coaching to empower students with practical insights, helping them build the skills needed for success.</p>
+
+        <p>Our team of mentors is committed to offering valuable mentorship to students, providing a supportive environment for learning, sharing expertise, and helping individuals flourish in their academic and professional journeys.</p>
+    </div>
+
+<h3>Available Mentors</h3>
+
+<!-- Bootstrap Card Row -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Card 1 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img9.jpg" class="card-img-top" alt="Resume Review 1">
+            <div class="card-body">
+                <h5 class="card-title">Jessica Dora</h5>
+                <p class="card-text">A seasoned academic and organizational psychology Ph.D., Jessica guides students in stress management, resilience-building, and achieving work-life balance.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img11.jpg" class="card-img-top" alt="Resume Review 2">
+            <div class="card-body">
+                <h5 class="card-title">Zainab Uthman</h5>
+                <p class="card-text">With over a decade in technology, Zainab, a software development and project management expert, empowers students for success in the ever-evolving tech landscape.</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col">
+        <div class="card h-100">
+            <img src="/images/career_img10.jpg" class="card-img-top" alt="Resume Review 3">
+            <div class="card-body">
+                <h5 class="card-title">Daniel Ola</h5>
+                <p class="card-text">Dynamic marketing strategist Daniel, with diverse industry experience, mentors students in brand building, digital marketing, and effective communication.
+</p>
+                <!-- Add any additional details or buttons as needed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<footer>
+        &copy; 2023 Funke Aderoju. All rights reserved.
+    </footer>
 </body>
+
 </html>

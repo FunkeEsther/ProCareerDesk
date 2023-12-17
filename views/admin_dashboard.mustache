@@ -1,26 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - ProCareerDesk</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-<correct-integrity-value>" crossorigin="anonymous">
+    <!-- Add this line to include Font Awesome JavaScript library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-<correct-integrity-value>" crossorigin="anonymous"></script>
+
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+       header a.logout-button {
+        text-decoration: none;
+        color: white;
+        background-color: #001f3f;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    header a.logout-button:hover {
+        background-color: #003366;
+    }
+
+        main {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .user-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-profile i {
+            font-size: 140px; /* Make the profile icon extremely big */
+            margin-bottom: 10px;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            font-size: 18px;
+        }
+        
+        .user-details p {
+            margin: 20px 0;
+        }
+
+        .user-details-column {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .user-details-column div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 60px; /* Add more space between columns */
+    margin-left: 60px; /* Add more space between columns */
+
+}
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .opportunity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .opportunity input {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: auto;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        button.delete-button {
+            background-color: #d9534f;
+        }
+
+        button:hover, button.delete-button:hover {
+            background-color: #555;
+        }
+
+        .add-opportunity-button {
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .add-opportunity-button:hover {
+            background-color: #46b8da;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <a href="/about" class="logo">ProCareerDesk</a>
-        <nav>
-            <a href="/admin/dashboard">Admin Dashboard</a> | <a href="/student/dashboard">Student Dashboard</a>
-        </nav>
-    </header>
 
-    <section>
-        <h2>Welcome to the Admin Dashboard</h2>
-        <!-- Admin dashboard content goes here -->
-    </section>
+<header>
+    <h1>Admin Dashboard</h1>
+        <a href="/" class="logout-button">Logout</a>
 
-    <footer>
-        &copy; 2023 Mustache Company. All rights reserved.
-    </footer>
+</header>
+
+<main>
+    
+<div class="user-profile">
+    <i class="fas fa-user-circle" font-size: 140px;></i>
+    <div class="user-details">
+        <div class="user-details-column">
+        <div>
+            <p>Welcome, {{ userData.username }}</p> <br>
+            <p>Your role: {{ userData.role }}</p>
+            <p>First name: {{ userData.firstName }}</p>
+            <p>Last name: {{ userData.lastName }}</p>
+        </div>
+        </div>
+    </div>
+</div>
+
+    <h2>Add Student</h2>
+
+    <div class="opportunity">
+        <input type="checkbox" id="careerAdvice">
+        <label for="careerAdvice">Career Advice - Receive guidance and insights for your future career path.</label>
+    </div>
+
+    <div class="opportunity">
+        <input type="checkbox" id="resumeReview">
+        <label for="resumeReview">Resume Review - Get feedback on your resume to make it stand out to employers.</label>
+    </div>
+
+    <div class="opportunity">
+        <input type="checkbox" id="mockInterview">
+        <label for="mockInterview">Mock Interview - Practice and improve your interview skills in a simulated environment.</label>
+    </div>
+
+    <button class="add-opportunity-button">Add Opportunity</button>
+
+    <h2>View Students</h2>
+
+    <!-- Added opportunities will be displayed here -->
+   <!-- Replace delete and modify buttons with Font Awesome icons -->
+<div class="opportunity">
+    <label>Student 1 record</label>
+    <button onclick="modifyOpportunity('New Opportunity 1')"><i class="fas fa-edit"></i> Modify</button>
+    <button class="delete-button" onclick="deleteOpportunity('New Opportunity 1')"><i class="fas fa-trash-alt"></i> Delete</button>
+</div>
+
+<div class="opportunity">
+    <label>Student2 record</label>
+    <button onclick="modifyOpportunity('New Opportunity 2')"><i class="fas fa-edit"></i> Modify</button>
+    <button class="delete-button" onclick="deleteOpportunity('New Opportunity 2')"><i class="fas fa-trash-alt"></i> Delete</button>
+</div>
+
+</main>
+
 </body>
 </html>

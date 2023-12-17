@@ -1,0 +1,155 @@
+body {
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header a.logout-button {
+    text-decoration: none;
+    color: white;
+    background-color: #001f3f;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+header a.logout-button:hover {
+    background-color: #003366;
+}
+
+main {
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-profile i {
+    font-size: 140px;
+    margin-bottom: 10px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 18px;
+    margin-top: 10px; /* Adjust the top margin for better spacing */
+}
+
+.user-details p {
+    margin: 10px 0;
+}
+
+h2 {
+    color: #333;
+    margin-top: 60px;
+}
+.user-details-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-details-column {
+    flex: 1;
+}
+
+.user-details i {
+    font-size: 180px; /* Make the profile icon bigger */
+    margin-bottom: 10px;
+}
+
+.user-profile i {
+    font-size: 180px; /* Make the profile icon bigger */
+    margin-bottom: 10px;}
+    .header-buttons {
+    display: flex;
+    gap: 10px; /* Adjust the space between buttons as needed */
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px; /* Adjust the space between buttons as needed */
+    margin-top: 20px;
+}
+
+.dashboard-button {
+    background-color: #06254b; /* Button background color */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Padding around text */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Add a slight border radius for a rounded appearance */
+    text-decoration: none; /* Remove default link underline */
+    font-size: 16px; /* Adjust font size as needed */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+    /* You can add more styles like box-shadow, hover effects, etc. */
+}
+
+.dashboard-button:hover {
+    background-color: #0056b3; /* Change background color on hover */
+}
+
+footer {
+    background-color: #1f2b3b;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: 100px;
+}
+.card {
+    width: 15rem; /* Adjust the width as needed */
+}
+h4{
+    margin-top: 60px;
+}
+
+.card-title {
+    color: blue;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

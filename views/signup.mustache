@@ -5,126 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - ProCareerDesk</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+    <link rel="stylesheet" href="/css/signup.css">
 
-        header {
-            background-color: #1f2b3b;
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        nav {
-            background-color: #15202b;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        form {
-            max-width: 800px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            margin: 20px auto; /* Center the form */
-        }
-
-        section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column; /* Center forms vertically */
-            min-height: 100vh;
-        }
-
-        h2 {
-            color: #333;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .form-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .form-column {
-            flex-basis: calc(33.33% - 10px);
-        }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            color: #333;
-            text-align: left;
-        }
-
-        input {
-            width: calc(100% - 10px);
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        input.error {
-            border: 2px solid red;
-        }
-
-        button {
-            width: 100%;
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #1f2b3b;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
     <header>
-        <a href="/about" class="logo">ProCareerDesk</a>
+        <a href="/" class="logo">ProCareerDesk</a>
         <nav>
             <a href="/login">Login</a> | <a href="/signup">Sign Up</a>
         </nav>
@@ -181,46 +67,51 @@
         </form>
 
         <form action="/admin/signup" method="post">
-            <h2>Admin Signup</h2>
-            {{#adminErrorMessage}}
-                <p style="color: red;">{{adminErrorMessage}}</p>
-            {{/adminErrorMessage}}
-            <div class="form-row">
-                <div class="form-column">
-                    <label for="adminFirstName">First Name:</label>
-                    <input type="text" id="adminFirstName" name="firstName" required class="{{#adminErrors.firstName}}error{{/adminErrors.firstName}}">
-                </div>
-                <div class="form-column">
-                    <label for="adminLastName">Last Name:</label>
-                    <input type="text" id="adminLastName" name="lastName" required class="{{#adminErrors.lastName}}error{{/adminErrors.lastName}}">
-                </div>
-                <div class="form-column">
-                    <label for="adminUsername">Username:</label>
-                    <input type="text" id="adminUsername" name="username" required class="{{#adminErrors.username}}error{{/adminErrors.username}}">
-                </div>
-            </div>
+    <h2>Admin Signup</h2>
+    <p>The email must include "@aluadmin.com" to register</p>
+    {{#adminErrorMessage}}
+        <p style="color: red;">{{adminErrorMessage}}</p>
+    {{/adminErrorMessage}}
 
-            <div class="form-row">
-                <div class="form-column">
-                    <label for="adminEmail">Email:</label>
-                    <input type="email" id="adminEmail" name="email" required class="{{#adminErrors.email}}error{{/adminErrors.email}}">
-                </div>
-                <div class="form-column">
-                    <label for="adminPassword">Password:</label>
-                    <input type="password" id="adminPassword" name="password" required class="{{#adminErrors.password}}error{{/adminErrors.password}}">
-                </div>
-                <div class="form-column">
-                    <label for="confirmAdminPassword">Confirm Password:</label>
-                    <input type="password" id="confirmAdminPassword" name="confirmPassword" required class="{{#adminErrors.confirmPassword}}error{{/adminErrors.confirmPassword}}">
-                </div>
-            </div>
+    <div class="form-row">
+        <div class="form-column">
+            <label for="adminFirstName">First Name:</label>
+            <input type="text" id="adminFirstName" name="firstName" required class="{{#adminErrors.firstName}}error{{/adminErrors.firstName}}">
+        </div>
+        <div class="form-column">
+            <label for="adminLastName">Last Name:</label>
+            <input type="text" id="adminLastName" name="lastName" required class="{{#adminErrors.lastName}}error{{/adminErrors.lastName}}">
+        </div>
+        <div class="form-column">
+            <label for="adminUsername">Username:</label>
+            <input type="text" id="adminUsername" name="username" required class="{{#adminErrors.username}}error{{/adminErrors.username}}">
+        </div>
+    </div>
 
-            <button type="submit">Sign Up</button>
+    <div class="form-row">
+        <div class="form-column">
+            <label for="adminEmail">Email:</label>
+            <input type="email" id="adminEmail" name="email" required class="{{#adminErrors.email}}error{{/adminErrors.email}}">
+        </div>
+        <div class="form-column">
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" name="password" required class="{{#adminErrors.password}}error{{/adminErrors.password}}">
+        </div>
+        <div class="form-column">
+            <label for="confirmAdminPassword">Confirm Password:</label>
+            <input type="password" id="confirmAdminPassword" name="confirmPassword" required class="{{#adminErrors.confirmPassword}}error{{/adminErrors.confirmPassword}}">
+        </div>
+    </div>
+
+    <button type="submit">Sign Up</button>
+</form>
+
+    <button type="submit">Sign Up</button>
         </form>
     </section>
 
     <footer>
-        &copy; 2023 Mustache Company. All rights reserved.
+        &copy; 2023 Funke Esther. All rights reserved.
     </footer>
 </body>
 </html>
