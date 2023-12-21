@@ -1,16 +1,26 @@
-// routes/routes.js
 const express = require('express');
 const router = express.Router();
+const studentController = require('../Controllers/studentController');
 
-router.post('/addopportunities', (req, res) => {
-    // Handle the form submission logic here
-    const selectedOpportunities = req.body.opportunities;
 
-    // Assuming you want to process the selected opportunities
-    // You can perform actions like storing them in a database or processing them in any way you need.
+router.get("/:userId/addOpp", studentController.addOpportunity);
 
-    // Redirect back to the student dashboard after processing
-    res.redirect('/student_dashboard');
-});
+// Route to handle form submission for adding opportunities
+router.post('/:userId/submitOpportunity', studentController.submitOpportunity);
+
+// Route to display student dashboard with opportunities
+router.get('/:userId/myOpp', studentController.displayMyOpportunities);
+
+// Route to handle opportunity deletion by ID
+router.get("/:userId/deleteOpportunity/:opportunityId", studentController.deleteOpportunity);
+
+
+// Add this route to handle opportunity updates
+router.post('/:userId/updateOpportunity/:opportunityId', studentController.updateOpportunity);
+
+
+router.get('/:userId/edit/:_id', studentController.displayOpportunity);
+
+
 
 module.exports = router;

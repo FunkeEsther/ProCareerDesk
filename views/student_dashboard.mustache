@@ -33,19 +33,22 @@
             <p>Student ID:</p>
             <p>First name:</p>
             <p>Last name:</p>
+            
         </div>
         <div class="user-details-column">
             <p>{{ userData.role }}</p>
             <p>{{ userData.studentId }}</p>
             <p>{{ userData.firstName }}</p>
             <p>{{ userData.lastName }}</p>
+            
         </div>
     </div>
 </div>
     </main>
+    
     <div class="header-buttons">
-            <a href="/addOpp" class="dashboard-button">Add Opportunities</a>
-            <a href="/myOpp" class="dashboard-button">My Opportunities</a>
+            <a href="/{{userData.userId}}/addOpp" class="dashboard-button">Add Opportunities</a>
+            <a href="/{{userData.userId}}/myOpp" class="dashboard-button">My Opportunities</a>
         </div>
 <h2>Available coaching/mentoring opportunities</h2>
 

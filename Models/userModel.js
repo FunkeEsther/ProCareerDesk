@@ -6,7 +6,7 @@ const saltRounds = 10;
 // Create or load the NeDB datastore
 const db = new Datastore({ filename: 'users.db', autoload: true });
 
-class User {
+class User { 
     static hashPassword(password) {
         return bcrypt.hashSync(password, saltRounds);
     }
@@ -61,6 +61,225 @@ class User {
             }
         });
     }
+
+    
+    static findByIdAndUpdate(userId, updateData, callback) {
+        const updateQuery = { $set: updateData };
+      
+        db.update({ _id: userId }, updateQuery, {}, (err, numAffected) => {
+          if (err) {
+            console.error('Error updating user:', err);
+            if (typeof callback === 'function') {
+              return callback(err, null);
+            } else {
+              console.error('Callback function is not provided.');
+            }
+          } else {
+            if (typeof callback === 'function') {
+              callback(null, numAffected);
+            } else {
+              console.error('Callback function is not provided.');
+            }
+          }
+        });
+      }
+      
+       
+
+    // static findById(id, callback) {
+    //     db.findOne({ _id: id }, (err, opportunity) => {
+    //         if (err) {
+    //             callback(err, null);
+    //         } else {
+    //             callback(null, opportunity);
+    //         }
+    //     });
+    // }
+
+    static findById(userId, callback) {
+        db.findOne({ _id: userId }, (err, user) => {
+            if (err) {
+                console.error('Error finding user:', err);
+                if (typeof callback === 'function') {
+                   return callback(err, null);
+                } else {
+                   console.error('Callback function is not provided.');
+                }
+            } else {
+                if (typeof callback === 'function') {
+                   callback(null, user);
+                } else {
+                   console.error('Callback function is not provided.');
+                }
+            }
+        });
+    }
+ 
+ 
+
+
+
+    // static updateById(userId, newData, callback) {
+    //     db.update({ _id: userId }, { $set: newData }, {}, callback);
+    //   }
+
+    // static findByIdAndUpdate(id, update, callback) {
+    //     db.update({ _id: id }, { $set: update }, { returnUpdatedDocs: true }, (err, numAffected, affectedDoc) => {
+    //         if (err) {
+    //             callback(err, null);
+    //         } else {
+    //             callback(null, affectedDoc);
+    //         }
+    //     });
+    // }
+
+    static getAllOpportunities(callback) {
+        db.find({}, (err, data) => {
+         if (err) {
+           callback(err, null);
+         } else {
+           console.log('Data:', data); // Log the data
+           callback(null, data);
+         }
+        });
+       }
+     
+       static updateUser(userId, user, callback) {
+        db.update(
+          { _id: userId },
+          user,
+          {},
+          function (err, numReplaced) {
+            if (err) {
+              console.error('Error updating user:', err);
+              if (typeof callback === 'function') {
+                return callback(err, null);
+              } else {
+                console.error('Callback function is not provided.');
+              }
+            } else {
+              if (typeof callback === 'function') {
+                callback(null, numReplaced);
+              } else {
+                console.error('Callback function is not provided.');
+              }
+            }
+          }
+        );
+      }
+
+      static updateOne(query, update, callback) {
+        db.update(query, update, {}, (err, numAffected) => {
+            if (err) {
+                console.error('Error updating user:', err);
+                if (typeof callback === 'function') {
+                    return callback(err, null);
+                } else {
+                    console.error('Callback function is not provided.');
+                }
+            } else {
+                if (typeof callback === 'function') {
+                    callback(null, numAffected);
+                } else {
+                    console.error('Callback function is not provided.');
+                }
+            }
+        });
+    }
+
+    //   static deleteOpportunity(userId, opportunityId, callback) {
+    //     db.findOne({ _id: userId }, (err, user) => {
+    //         if (err) {
+    //             console.error('Error finding user:', err);
+    //             if (typeof callback === 'function') {
+    //                 return callback(err, null);
+    //             } else {
+    //                 console.error('Callback function is not provided.');
+    //             }
+    //         } else {
+    //             if (!user) {
+    //                 const notFoundError = new Error('User not found');
+    //                 if (typeof callback === 'function') {
+    //                     return callback(notFoundError, null);
+    //                 } else {
+    //                     console.error('Callback function is not provided.');
+    //                 }
+    //             } else {
+    //                 // Find the index of the opportunity to delete
+    //                 const opportunityIndex = user.opportunity.findIndex(op => op === opportunityId);
+    
+    //                 if (opportunityIndex === -1) {
+    //                     const notFoundError = new Error('Opportunity not found');
+    //                     if (typeof callback === 'function') {
+    //                         return callback(notFoundError, null);
+    //                     } else {
+    //                         console.error('Callback function is not provided.');
+    //                     }
+    //                 } else {
+    //                     // Remove the opportunity from the user's opportunity array
+    //                     user.opportunity.splice(opportunityIndex, 1);
+    
+    //                     // Update the user in the database
+    //                     db.update({ _id: userId }, { $set: { opportunity: user.opportunity } }, {}, (updateErr, numReplaced) => {
+    //                         if (updateErr) {
+    //                             console.error('Error updating user:', updateErr);
+    //                             if (typeof callback === 'function') {
+    //                                 return callback(updateErr, null);
+    //                             } else {
+    //                                 console.error('Callback function is not provided.');
+    //                             }
+    //                         } else {
+    //                             if (typeof callback === 'function') {
+    //                                 callback(null, numReplaced);
+    //                             } else {
+    //                                 console.error('Callback function is not provided.');
+    //                             }
+    //                         }
+    //                     });
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
+    
+
+    static deleteOpportunity(userId, opportunityId, callback) {
+        // Find the user by ID in the database
+        User.findById(userId, (userErr, user) => {
+            if (userErr) {
+                console.error(userErr);
+                return callback(userErr, null);
+            }
+
+            if (!user) {
+                const notFoundError = new Error("User not found");
+                console.error(notFoundError);
+                return callback(notFoundError, null);
+            }
+
+            // Filter out the opportunity with the specified ID
+            user.opportunity = user.opportunity.filter(opportunity => opportunity._id !== opportunityId);
+
+            // Update the user document in the database with the modified opportunity array
+            User.updateOne({ _id: userId }, { $set: { opportunity: user.opportunity } }, (updateErr, numAffected) => {
+                if (updateErr) {
+                    console.error(updateErr);
+                    return callback(updateErr, null);
+                }
+
+                if (numAffected === 0) {
+                    const updateError = new Error("No user document was updated");
+                    console.error(updateError);
+                    return callback(updateError, null);
+                }
+
+                // Successfully deleted the opportunity
+                callback(null, { message: "Opportunity deleted successfully" });
+            });
+        });
+    }
+     
+     
 
     static comparePassword(candidatePassword, hashedPassword) {
         return bcrypt.compareSync(candidatePassword, hashedPassword);

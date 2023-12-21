@@ -1,3 +1,5 @@
+<!-- edit.mustache -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,36 +20,40 @@
 <body>
     <header>
         <h1>Edit Opportunities</h1>
-        <a href="/student_dashboard" class="logout-button">Go Back</a>
+        <a href="/student_dashboard/{{userId}}" class="logout-button">Go Back</a>
     </header>
-
-    <!-- Placeholder content for adding opportunities -->
+   
     <section>
-        <h2>Edit Opportunities</h2>
-        <form action="/submitOpportunity" method="post">
+        <h2>Edit Opportunity</h2>
+  
+          <h2>{{category}}</h2>
+          
+       <form action="/{{userId}}/updateOpportunity/{{opportunity._id }}" method="post">
             <div class="form-row">
                 <div class="form-column">
+                  <!-- Hidden field for userId -->
+                  
                     <label for="category">Category:</label>
                     <select id="category" name="category" required>
-                        <option value="CareerAdvice">Career Advice</option>
-                        <option value="ResumeReview">Resume Review</option>
-                        <option value="MockInterview">Mock Interview</option>
+                        <option value="CareerAdvice" {{#isCategory_CareerAdvice}} selected{{/isCategory_CareerAdvice}}>Career Advice</option>
+                        <option value="ResumeReview" {{#isCategory_ResumeReview}} selected{{/isCategory_ResumeReview}}>Resume Review</option>
+                        <option value="MockInterview" {{#isCategory_MockInterview}} selected{{/isCategory_MockInterview}}>Mock Interview</option>
                     </select>
                 </div>
                 <div class="form-column">
                     <label for="opportunity">Opportunity:</label>
                     <select id="opportunity" name="opportunity" required>
-                        <option value="Opportunity1">Opportunity 1</option>
-                        <option value="Opportunity2">Opportunity 2</option>
-                        <option value="Opportunity3">Opportunity 3</option>
+                        <option value="Opportunity1" {{#isOpportunity_Opportunity1}} selected{{/isOpportunity_Opportunity1}}>Opportunity 1</option>
+                        <option value="Opportunity2" {{#isOpportunity_Opportunity2}} selected{{/isOpportunity_Opportunity2}}>Opportunity 2</option>
+                        <option value="Opportunity3" {{#isOpportunity_Opportunity3}} selected{{/isOpportunity_Opportunity3}}>Opportunity 3</option>
                     </select>
                 </div>
                 <div class="form-column">
                     <label for="mentor">Mentor:</label>
                     <select id="mentor" name="mentor" required>
-                        <option value="JessicaDora">Jessica Dora</option>
-                        <option value="ZainabUthman">Zainab Uthman</option>
-                        <option value="DanielOla">Daniel Ola</option>
+                        <option value="JessicaDora" {{#isMentor_JessicaDora}} selected{{/isMentor_JessicaDora}}>Jessica Dora</option>
+                        <option value="ZainabUthman" {{#isMentor_ZainabUthman}} selected{{/isMentor_ZainabUthman}}>Zainab Uthman</option>
+                        <option value="DanielOla" {{#isMentor_DanielOla}} selected{{/isMentor_DanielOla}}>Daniel Ola</option>
                     </select>
                 </div>
             </div>
@@ -55,18 +61,19 @@
             <div class="form-row">
                 <div class="form-column">
                     <label for="date">Date:</label>
-                    <input type="date" id="date" name="date" required>
+                    <input type="date" id="date" name="date" required value="{{date}}">
                 </div>
                 <div class="form-column">
                     <label for="time">Time:</label>
-                    <input type="time" id="time" name="time" required>
+                    <input type="time" id="time" name="time" required value="{{time}}">
                 </div>
             </div>
-<button type="submit">Update</button>
+            <button type="submit">Update</button>
+       
         </form>
+       
     </section>
-
-    
+   
 
 </body>
 

@@ -1,0 +1,121 @@
+-- Table to store student records
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50),
+    Username VARCHAR(50) UNIQUE,
+    Email VARCHAR(100),
+);
+
+-- Table to store mentor records
+CREATE TABLE Mentors (
+    MentorID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+);
+
+-- Table to store mentoring opportunities
+CREATE TABLE MentoringOpportunities (
+    OpportunityID INT PRIMARY KEY,
+    OpportunityName VARCHAR(100),
+    MentorID INT,
+    CONSTRAINT FK_Mentor_Opportunity FOREIGN KEY (MentorID) REFERENCES Mentors(MentorID),
+);
+
+-- Table to store the relationship between students and mentors
+CREATE TABLE StudentMentorRelationship (
+    StudentID INT,
+    MentorID INT,
+    CONSTRAINT FK_Student_Mentor FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    CONSTRAINT FK_Mentor_Student FOREIGN KEY (MentorID) REFERENCES Mentors(MentorID),
+    PRIMARY KEY (StudentID, MentorID)
+);
+
+-- Admin table for authentication
+CREATE TABLE Admins (
+    AdminID INT PRIMARY KEY,
+    Username VARCHAR(50) UNIQUE,
+    Password VARCHAR(50),
+    -- Add more fields as needed
+);
+
+-- Query to authenticate admin
+CREATE PROCEDURE AdminLogin (
+    IN p_Username VARCHAR(50),
+    IN p_Password VARCHAR(50)
+)
+BEGIN
+    SELECT * FROM Admins WHERE Username = p_Username AND Password = p_Password;
+END;
+
+-- Query to view all student records
+CREATE PROCEDURE ViewAllStudents ()
+BEGIN
+    SELECT * FROM Students;
+END;
+
+-- Query to add a new student record
+CREATE PROCEDURE AddStudent (
+    IN p_FirstName VARCHAR(50),
+    IN p_LastName VARCHAR(50),
+    IN p_Age INT
+)
+BEGIN
+    INSERT INTO Students (FirstName, LastName, Age) VALUES (p_FirstName, p_LastName, p_Age);
+END;
+
+-- Query to modify a student record
+CREATE PROCEDURE ModifyStudent (
+    IN p_StudentID INT,
+    IN p_FirstName VARCHAR(50),
+    IN p_LastName VARCHAR(50),
+    IN p_Age INT
+)
+BEGIN
+    UPDATE Students
+    SET FirstName = p_FirstName, LastName = p_LastName, Age = p_Age
+    WHERE StudentID = p_StudentID;
+END;
+
+-- Query to delete a student record
+CREATE PROCEDURE DeleteStudent (
+    IN p_StudentID INT
+)
+BEGIN
+    DELETE FROM Students WHERE StudentID = p_StudentID;
+END;
+
+-- Query to add a new mentor
+CREATE PROCEDURE AddMentor (
+    IN p_FirstName VARCHAR(50),
+    IN p_LastName VARCHAR(50)
+)
+BEGIN
+    INSERT INTO Mentors (FirstName, LastName) VALUES (p_FirstName, p_LastName);
+END;
+
+-- Query to delete a mentor
+CREATE PROCEDURE DeleteMentor (
+    IN p_MentorID INT
+)
+BEGIN
+    DELETE FROM Mentors WHERE MentorID = p_MentorID;
+END;
+
+-- Query to add a new mentoring opportunity
+CREATE PROCEDURE AddMentoringOpportunity (
+    IN p_OpportunityName VARCHAR(100),
+    IN p_MentorID INT
+)
+BEGIN
+    INSERT INTO MentoringOpportunities (OpportunityName, MentorID) VALUES (p_OpportunityName, p_MentorID);
+END;
+
+-- Query to delete a mentoring opportunity
+CREATE PROCEDURE DeleteMentoringOpportunity (
+    IN p_OpportunityID INT
+)
+BEGIN
+    DELETE FROM MentoringOpportunities WHERE OpportunityID = p_OpportunityID;
+END;

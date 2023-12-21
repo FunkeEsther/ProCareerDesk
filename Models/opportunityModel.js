@@ -4,22 +4,26 @@ const Datastore = require('nedb');
 const db = new Datastore({ filename: 'opportunities.db', autoload: true });
 
 class Opportunity {
-    static createOpportunity(opportunityName, callback) {
-        const opportunity = {
-            name: opportunityName,
-        };
+    constructor(category, opportunity, mentor, date, time) {
+        this.category = category;
+        this.opportunity = opportunity;
+        this.mentor = mentor;
+        this.date = date;
+        this.time = time;
+    }
 
-        db.insert(opportunity, (err, newOpportunity) => {
+    save(callback) {
+        db.insert(this, (err, savedOpportunity) => {
             if (err) {
                 console.error('Error creating opportunity:', err);
                 if (typeof callback === 'function') {
-                    return callback(err, null);
+                    callback(err, null);
                 } else {
                     console.error('Callback function is not provided.');
                 }
             } else {
                 if (typeof callback === 'function') {
-                    callback(null, newOpportunity);
+                    callback(null, savedOpportunity);
                 } else {
                     console.error('Callback function is not provided.');
                 }
@@ -27,48 +31,51 @@ class Opportunity {
         });
     }
 
-    static updateOpportunity(opportunityId, updatedOpportunityName, callback) {
-        const updatedOpportunity = {
-            _id: opportunityId,
-            name: updatedOpportunityName,
-        };
-
-        db.update({ _id: opportunityId }, updatedOpportunity, {}, (err, numReplaced) => {
+    
+    static findById(id, callback) {
+        db.findOne({ _id: id }, (err, opportunity) => {
             if (err) {
-                console.error('Error updating opportunity:', err);
-                if (typeof callback === 'function') {
-                    return callback(err, null);
-                } else {
-                    console.error('Callback function is not provided.');
-                }
+                callback(err, null);
             } else {
-                if (typeof callback === 'function') {
-                    callback(null, numReplaced);
-                } else {
-                    console.error('Callback function is not provided.');
-                }
+                callback(null, opportunity);
             }
         });
     }
 
-    static deleteOpportunity(opportunityId, callback) {
+    static getAllOpportunities(callback) {
+        db.find({}, (err, data) => {
+         if (err) {
+           callback(err, null);
+         } else {
+           console.log('Data:', data); // Log the data
+           callback(null, data);
+         }
+        });
+       }
+  
+       static deleteOpportunityById(opportunityId, callback) {
         db.remove({ _id: opportunityId }, {}, (err, numRemoved) => {
             if (err) {
-                console.error('Error deleting opportunity:', err);
-                if (typeof callback === 'function') {
-                    return callback(err, null);
-                } else {
-                    console.error('Callback function is not provided.');
-                }
+                callback(err, null);
             } else {
-                if (typeof callback === 'function') {
-                    callback(null, numRemoved);
-                } else {
-                    console.error('Callback function is not provided.');
-                }
+                callback(null, numRemoved);
+            }
+        });
+    }
+
+    
+
+    static updateOpportunityById(opportunityId, updatedOpportunity, callback) {
+        db.update({ _id: opportunityId }, { $set: updatedOpportunity }, {}, (err, numReplaced) => {
+            if (err) {
+                callback(err, null);
+            } else {
+                callback(null, numReplaced);
             }
         });
     }
 }
+
+
 
 module.exports = Opportunity;

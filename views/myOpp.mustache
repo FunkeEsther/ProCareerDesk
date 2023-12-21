@@ -18,29 +18,42 @@
 <body>
     <header>
         <h1>Student Dashboard</h1>
-        <a href="/student_dashboard" class="logout-button">Go Back</a>
+        <a href="/student_dashboard/{{userId}}" class="logout-button">Go Back</a>
     </header>
 
     <!-- Placeholder content for adding opportunities -->
     
+<!-- myOpp.mustache -->
+
 <section>
-        <h2>My Opportunities</h2>
-        {{#opportunities}}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{category}}</h5>
-                <p class="card-text">Opportunity: {{opportunity}}</p>
-                <p class="card-text">Mentor: {{mentor}}</p>
-                <p class="card-text">Date: {{date}}</p>
-                <p class="card-text">Time: {{time}}</p>
-                <div class="buttons">
-                    <button class="edit-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                </div>
-            </div>
-        </div>
-        {{/opportunities}}
-    </section>
+  <h2>My Opportunities</h2>
+ 
+
+       {{#opportunities}}
+  <div class="opportunity-card">
+    <div class="card-header">
+      <h2>{{category}}</h2>
+    
+      <a href="/{{userId}}/edit/{{_id}}" class="modify-button">Modify</a>
+
+
+      <a href="/{{userId}}/deleteOpportunity/{{_id}}" class="delete-link" onclick="deleteOpportunity('{{_id}}')">
+        <button class="delete-button">Delete</button>
+      </a>
+    </div>
+    <ul>
+      <li>
+        <strong>Opportunity:</strong> {{opportunity}}<br>
+        <strong>Mentor:</strong> {{mentor}}<br>
+        <strong>Date:</strong> {{date}}<br>
+        <strong>Time:</strong> {{time}}
+      </li>
+    </ul>
+  </div>
+{{/opportunities}}
+
+
+
 
 </body>
 

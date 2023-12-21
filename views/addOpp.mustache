@@ -18,13 +18,13 @@
 <body>
     <header>
         <h1>Add Opportunities</h1>
-        <a href="/student_dashboard" class="logout-button">Go Back</a>
+        <a href="/student_dashboard/{{_id}}" class="logout-button">Go Back</a>
     </header>
 
     <!-- Placeholder content for adding opportunities -->
     <section>
         <h2>Add Opportunities</h2>
-        <form action="/submitOpportunity" method="post">
+        <form action="/{{userId}}/submitOpportunity" method="post">
             <div class="form-row">
                 <div class="form-column">
                     <label for="category">Category:</label>
