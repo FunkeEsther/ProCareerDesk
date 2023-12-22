@@ -43,24 +43,39 @@ class Student {
         });
     }
 
-    static getAllStudents(callback) {
-        db.find({}, (err, data) => {
+    static getAllStudents(query, callback) {
+        // You can pass a query object to filter the students if needed
+        db.find(query, (err, students) => {
             if (err) {
-                callback(err, null);
+                console.error('Error fetching students:', err);
+                if (typeof callback === 'function') {
+                    callback(err, null);
+                } else {
+                    console.error('Callback function is not provided.');
+                }
             } else {
-                callback(null, data);
+                console.log('Students fetched successfully:', students);
+                if (typeof callback === 'function') {
+                    callback(null, students);
+                } else {
+                    console.error('Callback function is not provided.');
+                }
             }
         });
     }
 
     static deleteStudentById(studentId, callback) {
         db.remove({ _id: studentId }, {}, (err, numRemoved) => {
-            if (err) {
-                callback(err, null);
-            } else {
-                callback(null, numRemoved);
-            }
+          if (err) {
+            console.error('Error deleting student:', err);
+            callback(err);
+          } else {
+            console.log('Student deleted successfully:', numRemoved);
+            // Use the same callback structure as in the provided deleteOpportunity method
+            callback(null, { message: "Student deleted successfully" });
+          }
         });
+    
     }
 
     static updateStudentById(studentId, updatedStudent, callback) {
