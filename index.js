@@ -4,9 +4,12 @@ const mustacheExpress = require("mustache-express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const User = require("./Models/userModel");
-const Opportunity = require("./Models/opportunityModel"); // Adjust the path accordingly
+const Student = require("./Models/studentModel");
+const Opportunity = require("./Models/opportunityModel");
 const path = require("path");
-const studentController = require("./Controllers/studentController"); // Adjust the path accordingly
+const studentController = require("./Controllers/studentController");
+const adminController = require("./Controllers/adminController");
+
 
 const app = express();
 
@@ -18,6 +21,8 @@ app.set("view engine", "mustache");
 app.set("views", __dirname + "/views");
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "views")));
+
 
 // Middleware to set the correct MIME type for CSS files
 app.use("/public/css", (req, res, next) => {
@@ -58,6 +63,11 @@ app.get("/manageStudent", (req, res) => {
   res.render("manageStudent");
 });
 
+// modify student route
+app.get("/modifyStudent", (req, res) => {
+  res.render("modifyStudent");
+});
+
 // manage mentor route
 app.get("/manageMentor", (req, res) => {
   res.render("manageMentor");
@@ -68,10 +78,15 @@ app.get("/addStudent", (req, res) => {
   res.render("addStudent");
 });
 
-
+//Student Route
 const studentRoute = require("./Routes/studentRoute");
 
 app.use("/", studentRoute);
+
+//Admin Route
+const adminRoute = require("./Routes/adminRoute");
+
+app.use("/", adminRoute);
 
 
 

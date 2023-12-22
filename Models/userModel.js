@@ -86,16 +86,6 @@ class User {
       
        
 
-    // static findById(id, callback) {
-    //     db.findOne({ _id: id }, (err, opportunity) => {
-    //         if (err) {
-    //             callback(err, null);
-    //         } else {
-    //             callback(null, opportunity);
-    //         }
-    //     });
-    // }
-
     static findById(userId, callback) {
         db.findOne({ _id: userId }, (err, user) => {
             if (err) {
@@ -117,21 +107,6 @@ class User {
  
  
 
-
-
-    // static updateById(userId, newData, callback) {
-    //     db.update({ _id: userId }, { $set: newData }, {}, callback);
-    //   }
-
-    // static findByIdAndUpdate(id, update, callback) {
-    //     db.update({ _id: id }, { $set: update }, { returnUpdatedDocs: true }, (err, numAffected, affectedDoc) => {
-    //         if (err) {
-    //             callback(err, null);
-    //         } else {
-    //             callback(null, affectedDoc);
-    //         }
-    //     });
-    // }
 
     static getAllOpportunities(callback) {
         db.find({}, (err, data) => {
@@ -187,60 +162,7 @@ class User {
         });
     }
 
-    //   static deleteOpportunity(userId, opportunityId, callback) {
-    //     db.findOne({ _id: userId }, (err, user) => {
-    //         if (err) {
-    //             console.error('Error finding user:', err);
-    //             if (typeof callback === 'function') {
-    //                 return callback(err, null);
-    //             } else {
-    //                 console.error('Callback function is not provided.');
-    //             }
-    //         } else {
-    //             if (!user) {
-    //                 const notFoundError = new Error('User not found');
-    //                 if (typeof callback === 'function') {
-    //                     return callback(notFoundError, null);
-    //                 } else {
-    //                     console.error('Callback function is not provided.');
-    //                 }
-    //             } else {
-    //                 // Find the index of the opportunity to delete
-    //                 const opportunityIndex = user.opportunity.findIndex(op => op === opportunityId);
     
-    //                 if (opportunityIndex === -1) {
-    //                     const notFoundError = new Error('Opportunity not found');
-    //                     if (typeof callback === 'function') {
-    //                         return callback(notFoundError, null);
-    //                     } else {
-    //                         console.error('Callback function is not provided.');
-    //                     }
-    //                 } else {
-    //                     // Remove the opportunity from the user's opportunity array
-    //                     user.opportunity.splice(opportunityIndex, 1);
-    
-    //                     // Update the user in the database
-    //                     db.update({ _id: userId }, { $set: { opportunity: user.opportunity } }, {}, (updateErr, numReplaced) => {
-    //                         if (updateErr) {
-    //                             console.error('Error updating user:', updateErr);
-    //                             if (typeof callback === 'function') {
-    //                                 return callback(updateErr, null);
-    //                             } else {
-    //                                 console.error('Callback function is not provided.');
-    //                             }
-    //                         } else {
-    //                             if (typeof callback === 'function') {
-    //                                 callback(null, numReplaced);
-    //                             } else {
-    //                                 console.error('Callback function is not provided.');
-    //                             }
-    //                         }
-    //                     });
-    //                 }
-    //             }
-    //         }
-    //     });
-    // }
     
 
     static deleteOpportunity(userId, opportunityId, callback) {

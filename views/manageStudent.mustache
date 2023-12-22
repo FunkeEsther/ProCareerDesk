@@ -20,36 +20,38 @@
     <a href="/addStudent" class="dashboard-button">Add Student</a>
 
     <!-- Table to display student records -->
-    <table>
-        <thead>
-            <tr>
-                <th>StudentID</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Department</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Replace the following rows with actual data from your database -->
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>Computer Science</td>
-                <td>johndoe</td>
-                <td>johndoe@example.com</td>
-                <td>
-                    <!-- Font Awesome icons for delete and modify actions -->
-                    <i class="fas fa-trash" onclick="deleteStudent(1)"></i>
-                    <i class="fas fa-edit" onclick="modifyStudent(1)"></i>
-                </td>
-            </tr>
-            <!-- Add more rows as needed -->
-        </tbody>
-    </table>
+    <!-- Table to display student records -->
+<table>
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Department</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#students}}
+        <tr>
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{department}}</td>
+            <td>{{username}}</td>
+            <td>{{email}}</td>
+            <td>
+                <!-- Font Awesome icons for delete and modify actions -->
+                <i class="fas fa-trash" onclick="deleteStudent('{{_id}}')" style="color: red;"></i>
+                <a href="/modifyStudent/{{_id}}">
+                    <i class="fas fa-edit"></i>
+                </a>
+            </td>
+        </tr>
+        {{/students}}
+    </tbody>
+</table>
+
 
     <!-- Link to the external JavaScript file -->
     <script src="script.js"></script>

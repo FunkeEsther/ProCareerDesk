@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Controllers/adminController.js"></script>
+
+    <title>Student Records</title>
+
+    <!-- Include Font Awesome (replace the version number with the desired version) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="/css/addStudent.css">
+</head>
+<body>
+    <header>
+        <h1>Add Student</h1>
+        <a href="/admin_dashboard" class="logout-button">Go Back</a>
+    </header>
+
+    <!-- Card-like container for the form -->
+    <div class="card">
+        <!-- Form for adding a student -->
+        <form action="/addStudent" method="post" class="student-form">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" value="{{firstName}}" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" value="{{lastName}}" required>
+
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" value="{{department}}" required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{username}}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{email}}" required>
+
+            <button type="submit" class="submit-button">Update</button>
+        </form>
+    </div>
+</body>
+</html>

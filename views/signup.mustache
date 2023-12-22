@@ -66,48 +66,6 @@
             <button type="submit">Sign Up</button>
         </form>
 
-        <form action="/admin/signup" method="post">
-    <h2>Admin Signup</h2>
-    <p>The email must include "@aluadmin.com" to register</p>
-    {{#adminErrorMessage}}
-        <p style="color: red;">{{adminErrorMessage}}</p>
-    {{/adminErrorMessage}}
-
-    <div class="form-row">
-        <div class="form-column">
-            <label for="adminFirstName">First Name:</label>
-            <input type="text" id="adminFirstName" name="firstName" required class="{{#adminErrors.firstName}}error{{/adminErrors.firstName}}">
-        </div>
-        <div class="form-column">
-            <label for="adminLastName">Last Name:</label>
-            <input type="text" id="adminLastName" name="lastName" required class="{{#adminErrors.lastName}}error{{/adminErrors.lastName}}">
-        </div>
-        <div class="form-column">
-            <label for="adminUsername">Username:</label>
-            <input type="text" id="adminUsername" name="username" required class="{{#adminErrors.username}}error{{/adminErrors.username}}">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-column">
-            <label for="adminEmail">Email:</label>
-            <input type="email" id="adminEmail" name="email" required class="{{#adminErrors.email}}error{{/adminErrors.email}}">
-        </div>
-        <div class="form-column">
-            <label for="adminPassword">Password:</label>
-            <input type="password" id="adminPassword" name="password" required class="{{#adminErrors.password}}error{{/adminErrors.password}}">
-        </div>
-        <div class="form-column">
-            <label for="confirmAdminPassword">Confirm Password:</label>
-            <input type="password" id="confirmAdminPassword" name="confirmPassword" required class="{{#adminErrors.confirmPassword}}error{{/adminErrors.confirmPassword}}">
-        </div>
-    </div>
-
-    <button type="submit">Sign Up</button>
-</form>
-
-    <button type="submit">Sign Up</button>
-        </form>
     </section>
 
     <footer>

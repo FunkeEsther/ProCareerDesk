@@ -143,42 +143,7 @@ const addOpportunity = (req, res) => {
   });
 };
 
-// const deleteOpportunity = (req, res) => {
-//   const opportunityId = req.params.id;
 
-//   Opportunity.deleteOpportunityById(opportunityId, (err, result) => {
-//     if (err) {
-//       console.error(err);
-//       res.redirect("/error");
-//     } else {
-//       // Redirect to the page where you want to display opportunities after deletion
-//       res.redirect("/myOpp");
-//     }
-//   });
-
-// };
-
-// const deleteOpportunity = (req, res) => {
-//   const userId = req.params.userId;
-//   const opportunityId = req.params.opportunityId;
-
-//   User.deleteOpportunity(userId, opportunityId, (deleteErr, numReplaced) => {
-//     if (deleteErr) {
-//       console.error(deleteErr);
-
-//       // Redirect to the error page if an error occurs during deletion
-//       return res.redirect("/error");
-//     }
-
-//     // If the deletion is successful, redirect to the success page
-//     if (numReplaced > 0) {
-//       return  res.redirect(`/${userId}/myOpp`);
-//     } else {
-//       // If no opportunities were deleted, send a message
-//       return res.send("No opportunities were deleted.");
-//     }
-//   });
-// };
 
 const deleteOpportunity = (req, res) => {
   const userId = req.params.userId;
